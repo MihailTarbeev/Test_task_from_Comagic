@@ -54,7 +54,8 @@ class ExecuteView(execute.Execute):
     async def post(self, json: NodeRunContext) -> NodeRunContext:
         try:
             result = int(json.node.data.properties['Текст']) + json.node.data.properties['Число']
-            if json.node.data.properties['Переключатель']:
+            is_text = json.node.data.properties['Переключатель']
+            if is_text:
                 result = str(result)
             await json.save_result({
                 "result": result
