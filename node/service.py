@@ -21,7 +21,6 @@ class NodeType(flow.NodeType):
             displayName='Текстовое поле',
             name='Текст',
             type=Property.Type.STRING,
-            # placeholder='0',
             description='Поле для числа типа string',
             required=True,
             default='0',
