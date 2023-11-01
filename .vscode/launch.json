@@ -13,7 +13,9 @@
       "args": [
         "node.service",
         "-c",
-        "node/config.yaml"
+        "node/config.yaml",
+        "node.execute",
+        "node.provider",
       ]
     }
   ]
