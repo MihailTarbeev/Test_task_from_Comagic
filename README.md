@@ -1,6 +1,13 @@
 # Test_task_from_Comagic
 Это серия заданий над проектом от компании "CoMagic", которую я выполнил за время стажировки
 <h1>Привет!</h1>
+
+[Первое задание](#первое-задание)
+[Второе задание](#второе-задание)
+[Третье задание](#третье-задание)
+[Четвёртое задание](#четвёртое-задание)
+[Пятое задание](#пятое-задание)
+
 <h1>Первое задание</h1>
 <p>Необходимо выполнить следующие пункты:</p>
 <ul>
@@ -38,4 +45,56 @@
 <p>При одновременном выборе <b>Второго</b> значения в двух полях, появляется новое поле "Дата и время".
 
 ![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/bba24b7d-295b-4cf8-b5f2-b0b8c9b233db)
+
+<h1>Четвёртое задание</h1>
+<p>Создание 2 сущностей нашего сервиса: Авторизации и Customer.</p>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/2fd20510-ed9a-4235-92d6-b83ff4cb14d9)
+
+<p>Пользователь в первом "кубике" вводит регистрационные данные от своей CRM./p>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/92c82b21-16d8-4ff4-9d4a-b1d5b2d9aab1)
+
+<p>Через соединение "кубиков" результат авторизации передаётся второму "кубику", отвечающему за получение данных о клиентах.</p>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/46ddc445-ecab-42f9-b122-5e8d9b60f9e4)
+
+<p>Созданы поля для выбора Ресурса, его методов и предустановленных фильтров.</p>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/160e3ba9-68a8-4769-88dd-93badff610b4)
+
+<p>На картинке выше в правой части можно наблюдать результат запроса у сущности Customer.</p>
+<p>Данный проект выполнен с интеграцией сервиса AlfaCRM.</p>
+
+<h1>Пятое задание</h1>
+<p>Создаём сервис, который способен загружать файлы на гугл диск и получать список файлов.</p>
+<p>Сервис состоит из четырёх "кубиков": Создание файла, Авторизация, Загрузка файла, Получение списка файлов.</p>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/bc34b928-2038-444d-8a9e-c9641c09d044)
+
+<p>Создаём наш тестовый файл.</p>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/eedcabae-e887-488d-b96f-ff4dcf482847)
+
+<p>Для авторизации нам понадобится JSON-файл с нашими приватными данными.</p>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/c1f6fecc-c334-401f-979e-12de95574937)
+
+<p>Вносим данные из этого JSON-файла в поле "Приватные данные".</p>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/b446fa3f-ea5d-4f49-9bfe-925926f111c1)
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/78895440-86ba-4c6a-8514-45ae157c68c9)
+
+<p>После отработки этого кубика выскочит окно авторизации.</p>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/ba11855d-a7b4-41c1-a75c-ac8900728704)
+
+<p>Загружаем наш файл на сервер.</p>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/8961763f-edfd-4b22-9593-6a202041a4ba)
+
+<p>Получаем список находящихся на диске файлов:</p>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/1850433e-19fa-482c-a6ef-df1d8d1e6efa)
 
