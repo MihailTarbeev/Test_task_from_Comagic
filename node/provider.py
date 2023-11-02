@@ -1,18 +1,42 @@
-from uc_http_requester.requester import Request
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+import json
+import requests
+
+gauth = GoogleAuth()
 
 
+def write_private_data(data):
+    with open("client_secrets.json", "w") as jsonFile:
+        json.dump(data, jsonFile)
 
-def get_authorization_request(domain: str, api_key: str, email: str) -> Request:
-    return Request(
-                url = f'https://{domain}/v2api/auth/login',
-                method=Request.Method.post,
-                json={"email": email, "api_key": api_key},
-            )
 
-def get_index_request(domain: str, branch: str, token: str, params: dict):
-    return Request(
-                url = f'https://{domain}/v2api/{branch}/customer/index',
-                method=Request.Method.post,
-                headers={"X-ALFACRM-TOKEN": token},
-                json=params,
-    )
+def authorization():
+    gauth.LocalWebserverAuth()
+
+
+def create_and_upload_file(file_name='text.txt', path=None):
+    try:
+        drive = GoogleDrive(gauth)
+        my_file = drive.CreateFile({"title": f'{file_name}'})
+        if path:
+            content = requests.get(path).text
+            my_file.SetContentString(content)
+            my_file.Upload()
+            return f'Файл {file_name} успешно загружен!'
+    except Exception as e:
+        return e
+
+
+def get_list_files():
+    try:
+        drive = GoogleDrive(gauth)
+        my_files = drive.ListFile().GetList()
+        data = {}
+        id = 0
+        for file in my_files:
+            id += 1
+            data[id] = file['title']
+        return data
+    except Exception as e:
+        return e
