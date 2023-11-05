@@ -1,33 +1,38 @@
 from uc_flow_nodes.schemas import NodeRunContext
 from uc_flow_nodes.views import execute
 from uc_flow_schemas.flow import RunState
-from .provider import create_and_upload_file, write_private_data, authorization, get_list_files
-
+from .provider import get_list_files, get_access_token, upload_file
 
 class ExecuteView(execute.Execute):
     async def post(self, json: NodeRunContext) -> NodeRunContext:
         try:
             prop = json.node.data.properties
             if prop['Действие'] == 'Авторизация':
-                private_data = prop['Приватные данные']
-                write_private_data(private_data)
-                authorization()
+                client_id = prop['client_id']
+                client_secret = prop['client_secret']
+                refresh_token = prop['refresh_token']
+                client_id = prop['client_id']
                 file = await prop['Файл']
+                access_token = await get_access_token(client_id, client_secret, refresh_token)
                 await json.save_result({
-                    "file": file
-                })
+                        "access_token": access_token,
+                        "file": file,
+                    })
             elif prop['Действие'] == 'Работа с данными':
                 if prop["Операция"] == 'Загрузка файла':
-                    file = await prop['Data']
-                    file_name = file["file"][0]["name"]
-                    file_path = file["file"][0]["path"]
-                    result = create_and_upload_file(file_name=file_name, path=file_path)
+                    data = await prop['data']
+                    access_token = data['access_token']
+                    file = data['file']
+                    result = await upload_file(access_token, file)
                     await json.save_result({
                         "result": result
                     })
                 elif prop["Операция"] == 'Получение списка файлов':
-                    result = get_list_files()
-                    await json.save_result(result)
+                    access_token = (await prop['data'])['access_token']
+                    files = await get_list_files(access_token)
+                    await json.save_result({
+                        "file_list": files,
+                    })
             json.state = RunState.complete
         except Exception as e:
             self.log.warning(f'Error {e}')

@@ -31,9 +31,37 @@ class NodeType(flow.NodeType):
             ]
         ),
         Property(
-            displayName='Приватные данные',
-            name='Приватные данные',
-            type=Property.Type.JSON,
+            displayName='client_id',
+            name='client_id',
+            type=Property.Type.STRING,
+	        required= True,
+            default='',
+            displayOptions=DisplayOptions(
+                show={
+                    'Действие': [
+                        'Авторизация',
+                    ],
+                },
+            ),
+        ),
+        Property(
+            displayName='client_secret',
+            name='client_secret',
+            type=Property.Type.STRING,
+	        required= True,
+            default='',
+            displayOptions=DisplayOptions(
+                show={
+                    'Действие': [
+                        'Авторизация',
+                    ],
+                },
+            ),
+        ),
+        Property(
+            displayName='refresh_token',
+            name='refresh_token',
+            type=Property.Type.STRING,
 	        required= True,
             default='',
             displayOptions=DisplayOptions(
@@ -83,19 +111,16 @@ class NodeType(flow.NodeType):
             ]
         ),
         Property(
-            displayName='Data',
-            name='Data',
+            displayName='data',
+            name='data',
             type=Property.Type.JSON,
-            required= False,
+            required= True,
             default='',
             displayOptions=DisplayOptions(
                 show={
                     'Действие': [
                         'Работа с данными',
-                    ],
-                    'Операция': [
-                        'Загрузка файла',
-                    ],
+                    ]
                 },
             ),
         ),
