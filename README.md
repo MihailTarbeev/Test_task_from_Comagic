@@ -67,34 +67,55 @@
 <p>Данный проект выполнен с интеграцией сервиса AlfaCRM.</p>
 
 <h1>Пятое задание</h1>
-<p>Создаём сервис, который способен загружать файлы на гугл диск и получать список файлов.</p>
-<p>Сервис состоит из четырёх "кубиков": Создание файла, Авторизация, Загрузка файла, Получение списка файлов.</p>
+<p>Создание сервиса, который способен взаимодействовать с гугл диском.</p>
+<p>А именно: <b>загружать файлы на диск</b> и <b>получать список файлов на диске</b>.</p>
+<p>Для работы с Google Drive API необходимо пройти аутентификацию с помощью протокола OAuth 2.0.</p>
+<p>Входными данными для работы с нашим сервисом будут:</p>
+<ul>
+  <li>client_id</li>
+  <li>client _secret</li>
+  <li>refresh_token</li>
+  <li>Загружаемый файл</li>
+</ul>
 
-![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/bc34b928-2038-444d-8a9e-c9641c09d044)
+<p>Чтобы узнать client_id и client_secret нужно настроить проект в Google API Console. В Credentials находим наши данные.</p>
 
-<p>Создаём наш тестовый файл.</p>
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/fe9bf3cc-e787-4068-8c7e-85bb0b48b3fc)
 
-![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/eedcabae-e887-488d-b96f-ff4dcf482847)
+<p>Чтобы получить refresh_token нужно:</p>
+<p>1) Отправить GET запрос на аутентификацию в Google по url https://accounts.google.com/o/oauth2/v2/auth со следующими параметрами:</p>
 
-<p>Для авторизации нам понадобится JSON-файл с нашими приватными данными.</p>
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/5985c357-4b6e-4304-9dfe-0b4cf7a04c0e)
 
-![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/c1f6fecc-c334-401f-979e-12de95574937)
+<p>Ответ включает параметр code , одноразовый код авторизации, который нам понадобится.</p>
+<p>2) Отправляем POST запрос по url https://oauth2.googleapis.com/token со следующими параметрами:</p>
 
-<p>Вносим данные из этого JSON-файла в поле "Приватные данные".</p>
 
-![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/b446fa3f-ea5d-4f49-9bfe-925926f111c1)
+<p>В ответе находим refresh_token.</p>
 
-![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/78895440-86ba-4c6a-8514-45ae157c68c9)
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/e193e10e-bd24-4f7a-91e0-df545347d62a)
 
-<p>После отработки этого кубика выскочит окно авторизации.</p>
+<p>Загружаемый файл создаётся при помощь сервиса File Server.</p>
 
-![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/ba11855d-a7b4-41c1-a75c-ac8900728704)
+<p>Вся структура наших "кубиков" выглядит следующим образом:</p>
 
-<p>Загружаем наш файл на сервер.</p>
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/e4a38069-b86a-4aaa-a36c-9824cc9eafb2)
 
-![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/8961763f-edfd-4b22-9593-6a202041a4ba)
+<ul>
+<li>Создаём наш файл.</li><br>
+  
+  ![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/2535001d-0ec4-4f99-9e15-176e653dbca8)
 
-<p>Получаем список находящихся на диске файлов:</p>
+<li>Получаем access_token.</li><br>
 
-![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/1850433e-19fa-482c-a6ef-df1d8d1e6efa)
+  ![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/104098bc-d925-4924-a7f8-aed1a921f0e3)
 
+<li>Загружаем наш файл.</li><br>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/ebf113be-a2b6-4a76-b887-088681da490f)
+
+<li>Получаем список файлов, находящихся на гугл диске.</li><br>
+
+![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/5061c2fd-ff7e-42d0-9d72-1b3e7056f533)
+
+</ul>
