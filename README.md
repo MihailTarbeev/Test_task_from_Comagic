@@ -90,11 +90,9 @@
 <p>Ответ включает параметр code , одноразовый код авторизации, который нам понадобится.</p>
 <p>2) Отправляем POST запрос по url https://oauth2.googleapis.com/token со следующими параметрами:</p>
 
-
-<p>В ответе находим refresh_token.</p>
-
 ![image](https://github.com/MihailTarbeev/Test_task_from_Comagic/assets/132607365/e193e10e-bd24-4f7a-91e0-df545347d62a)
 
+<p>В ответе находим refresh_token.</p>
 <p>Загружаемый файл создаётся при помощь сервиса File Server.</p>
 
 <p>Вся структура наших "кубиков" выглядит следующим образом:</p>
